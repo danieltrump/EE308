@@ -1,0 +1,57 @@
+from random import randint
+class Player():
+    def __init__(self, num):
+        self.num = num
+    def roll(self):
+        return randint(1, self.num)
+player1 = Player(6)
+result=[]
+for i in range(6):
+    result.append(player1.roll())
+print(result)
+modle = [1,2,3,4,5,6]
+count= {}
+for k in result:
+    if k in count:
+        count[k] += 1
+    else:
+        count[k] = 1
+for j in modle:
+    if j not in result:
+        count[j] = 0
+def bobing():
+    for i in range(1, 7):
+        if count[i] == 6:
+            if i == 4:
+                return '六博红'
+            else:
+                return '六博黑'
+        elif count[i]==5:
+            return '五子登科'
+        elif count[i]==4 and i!=4:
+            return '四进'
+    y = list(count.values())
+    l = 0
+    while y[l] == 1:
+        l += 1
+        if l == 5:
+            print("对堂")
+            break
+    if count[4] == 4 and count[1] == 2:
+        return '状元插金花'
+    elif count[4]==4 and count[1]!=2:
+        return '状元'
+    elif count[4]==3:
+        return '三红'
+    elif count[4]==2:
+        return '二举'
+    elif count[4]==1:
+        return '一秀'
+    else:
+        return '本次博饼没有奖励'
+
+print(bobing())
+
+
+
+
